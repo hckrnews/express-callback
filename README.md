@@ -9,10 +9,10 @@
 [npm-image]: https://img.shields.io/npm/v/@hckrnews/express-callback.svg
 [npm-stats]: https://npm-stat.com/charts.html?package=@hckrnews/express-callback
 [travis-url]: https://travis-ci.org/hckrnews/express-callback
-[travis-image]: https://img.shields.io/travis/hckrnews/express-callback/master.svg
+[travis-image]: https://img.shields.io/travis/hckrnews/express-callback/main.svg
 [coveralls-url]: https://coveralls.io/r/hckrnews/express-callback
-[coveralls-image]: https://img.shields.io/coveralls/hckrnews/express-callback/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/hckrnews/express-callback/main.svg
 [codecov-url]: https://codecov.io/gh/hckrnews/express-callback
 [codecov-image]: https://img.shields.io/codecov/c/github/hckrnews/express-callback.svg
-[scrutinizer-url]: https://scrutinizer-ci.com/g/hckrnews/express-callback/?branch=master
-[scrutinizer-image]: https://scrutinizer-ci.com/g/hckrnews/express-callback/badges/quality-score.png?b=master
+[scrutinizer-url]: https://scrutinizer-ci.com/g/hckrnews/express-callback/?branch=main
+[scrutinizer-image]: https://scrutinizer-ci.com/g/hckrnews/express-callback/badges/quality-score.png?b=main
