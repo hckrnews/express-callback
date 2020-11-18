@@ -1,0 +1,72 @@
+{
+    "name": "@hckrnews/express-callback",
+    "version": "0.1.0",
+    "description": "Express callback",
+    "files": [
+        "src/error-status.js",
+        "src/express-callback.js",
+        "src/response.js",
+        "src/status-codes.js",
+        "dist/express-callback.js",
+        "dist/express-callback.js.map",
+        "dist/express-callback.js",
+        "dist/express-callback.js.map",
+        "dist/express-callback.umd.js",
+        "dist/express-callback.umd.js.map"
+    ],
+    "source": "src/express-callback.js",
+    "main": "dist/express-callback.js",
+    "module": "dist/express-callback.js",
+    "unpkg": "dist/express-callback.umd.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hckrnews/express-callback.git"
+    },
+    "keywords": [
+        "javascript",
+        "express",
+        "callback"
+    ],
+    "author": {
+        "name": "Pieter Wigboldus",
+        "url": "https://hckr.news/"
+    },
+    "bugs": {
+        "url": "https://github.com/hckrnews/express-callback/issues"
+    },
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/hckrnews/express-callback#readme",
+    "scripts": {
+        "build": "microbundle --target node",
+        "dev": "microbundle --target node watch",
+        "lint": "eslint src/*.js --config .eslintrc",
+        "test": "jest",
+        "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@babel/preset-env": "^7.12.1",
+        "@hckrnews/eslint-config": "^1.0.0",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^26.6.3",
+        "codecov": "^3.7.2",
+        "coveralls": "^3.1.0",
+        "eslint": "^7.9.0",
+        "eslint-config-airbnb": "^18.2.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-html": "^6.1.0",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-jsx-a11y": "^6.3.1",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.21.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "esm": "^3.2.25",
+        "jest": "^26.6.3",
+        "microbundle": "^0.12.3",
+        "prettier": "^2.1.2"
+    },
+    "type": "module",
+    "engines": {
+        "node": ">= 10.13"
+    }
+}
