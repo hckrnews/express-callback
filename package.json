@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
