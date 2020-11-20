@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -19,7 +19,15 @@
     "source": "src/express-callback.js",
     "main": "dist/express-callback.js",
     "module": "dist/express-callback.module.js",
+    "esmodule": "dist/express-callback.modern.js",
     "unpkg": "dist/express-callback.umd.js",
+    "umd:main": "dist/express-callback.umd.js",
+    "exports": {
+        ".": {
+            "require": "./dist/express-callback.js",
+            "default": "./dist/express-callback.module.js"
+        }
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/hckrnews/express-callback.git"
@@ -65,7 +73,7 @@
         "esm": "^3.2.25",
         "jest": "^26.6.3",
         "microbundle": "^0.12.3",
-        "prettier": "^2.1.2"
+        "prettier": "^2.2.0"
     },
     "type": "module",
     "engines": {
