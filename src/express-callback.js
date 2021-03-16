@@ -4,7 +4,13 @@ import { buildJsonResponse, statusCodes, isValidStatusCode } from './response';
 export default function makeExpressCallback(controller, specification, logger) {
     return async (context, req, res) => {
         try {
-            const response = await controller(context, specification, logger);
+            const response = await controller({
+                context,
+                specification,
+                logger,
+                req,
+                res,
+            });
             const httpResponse = buildJsonResponse(response);
 
             if (httpResponse.headers) {
