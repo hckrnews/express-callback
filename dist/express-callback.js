@@ -58,10 +58,22 @@ function buildJsonResponse({
   };
 }
 
-function makeExpressCallback(controller, specification, logger) {
+function makeExpressCallback({
+  controller,
+  specification,
+  logger,
+  meta
+}) {
   return async (context, req, res) => {
     try {
-      const response = await controller(context, specification, logger);
+      const response = await controller({
+        context,
+        specification,
+        logger,
+        req,
+        res,
+        meta
+      });
       const httpResponse = buildJsonResponse(response);
 
       if (httpResponse.headers) {
