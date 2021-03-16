@@ -56,7 +56,12 @@ function buildJsonResponse({
   };
 }
 
-function makeExpressCallback(controller, specification, logger) {
+function makeExpressCallback({
+  controller,
+  specification,
+  logger,
+  meta
+}) {
   return async (context, req, res) => {
     try {
       const response = await controller({
@@ -64,7 +69,8 @@ function makeExpressCallback(controller, specification, logger) {
         specification,
         logger,
         req,
-        res
+        res,
+        meta
       });
       const httpResponse = buildJsonResponse(response);
 
