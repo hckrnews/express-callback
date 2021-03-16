@@ -64,7 +64,7 @@
     function makeExpressCallback(controller, specification, logger) {
       return async (context, req, res) => {
         try {
-          const response = await controller(context, specification);
+          const response = await controller(context, specification, logger);
           const httpResponse = buildJsonResponse(response);
 
           if (httpResponse.headers) {
