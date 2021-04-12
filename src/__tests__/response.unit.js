@@ -2,39 +2,48 @@ import { buildJsonResponse } from '../response';
 
 const TestCases = [
     {
-        description: 'The statusCode should be a valid http status code',
-        statusCode: '200',
-        body: {},
-        expectedResult: 'statusCode must have a valid http status code',
+        description: 'Test a simple request',
+        params: {
+            statusCode: 200,
+            body: {},
+        },
+        expectedResult: {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            statusCode: 200,
+            body: {},
+        },
     },
     {
-        description: 'The statusCode should be a valid http status code',
-        statusCode: 123,
-        body: {},
-        expectedResult: 'statusCode must have a valid http status code',
-    },
-    {
-        description: 'The body should be a valid array or object',
-        statusCode: 200,
-        headers: 'invalid headers',
-        body: {},
-        expectedResult: 'headers must have a valid array',
-    },
-    {
-        description: 'The body should be a valid array or object',
-        statusCode: 200,
-        body: 'example',
-        expectedResult: 'body must have a valid object',
+        description: 'Test a simple request',
+        params: {
+            statusCode: 201,
+            headers: {
+                test: 'ok',
+            },
+            body: {
+                example: 42,
+            },
+        },
+        expectedResult: {
+            headers: {
+                'Content-Type': 'application/json',
+                test: 'ok',
+            },
+            statusCode: 201,
+            body: {
+                example: 42,
+            },
+        },
     },
 ];
 
 describe.each(TestCases)(
     'Response entity',
-    ({ description, statusCode, body, expectedResult }) => {
-        it(description, async () => {
-            expect(async () =>
-                buildJsonResponse({ statusCode, body })
-            ).rejects.toThrow(expectedResult);
+    ({ description, params, expectedResult }) => {
+        it(description, () => {
+            expect(buildJsonResponse(params)).toEqual(expectedResult);
         });
     }
 );
