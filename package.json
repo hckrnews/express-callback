@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -31,9 +31,6 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/hckrnews/express-callback.git"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
     },
     "keywords": [
         "javascript",
