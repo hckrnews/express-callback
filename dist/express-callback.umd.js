@@ -34,7 +34,7 @@
     /**
      * Build a valid reponse message.
      *
-     * @param {object} statusCode, headers, body
+     * @param {number} statusCode, {object} headers, {object|array} body
      * @param {object} specification
      *
      * @return {object}
