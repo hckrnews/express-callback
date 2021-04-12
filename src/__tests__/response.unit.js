@@ -16,6 +16,13 @@ const TestCases = [
     {
         description: 'The body should be a valid array or object',
         statusCode: 200,
+        headers: 'invalid headers',
+        body: {},
+        expectedResult: 'headers must have a valid array',
+    },
+    {
+        description: 'The body should be a valid array or object',
+        statusCode: 200,
         body: 'example',
         expectedResult: 'body must have a valid object',
     },
