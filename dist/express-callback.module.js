@@ -40,25 +40,27 @@ function buildJsonResponse({
   headers = {},
   body = null
 }, specification = {}) {
-  if (statusCode?.constructor !== Number || !isValid(statusCode)) {
+  var _specification$info;
+
+  if ((statusCode == null ? void 0 : statusCode.constructor) !== Number || !isValid(statusCode)) {
     throw new Error('statusCode must have a valid http status code');
   }
 
-  if (headers?.constructor !== Object) {
+  if ((headers == null ? void 0 : headers.constructor) !== Object) {
     throw new Error('headers must have a valid object');
   }
 
-  if (body && body?.constructor !== Object && body?.constructor !== Array) {
+  if (body && (body == null ? void 0 : body.constructor) !== Object && (body == null ? void 0 : body.constructor) !== Array) {
     throw new Error('body must have a valid object');
   }
 
-  if (specification?.constructor !== Object) {
+  if ((specification == null ? void 0 : specification.constructor) !== Object) {
     throw new Error('specification must have a valid object');
   }
 
   const defaultBody = {
     status: true,
-    version: specification?.info?.version ?? 'unknown',
+    version: (specification == null ? void 0 : (_specification$info = specification.info) == null ? void 0 : _specification$info.version) ?? 'unknown',
     timestamp: new Date(),
     message: 'ok'
   };
