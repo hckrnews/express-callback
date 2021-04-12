@@ -21,6 +21,24 @@ const errorCodesStatus = [{
 
 var getStatusByError = (error => errorCodesStatus.find(errorCode => error instanceof errorCode.type).status);
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 const statusCodes = Object.keys(http.STATUS_CODES).map(Number);
 function isValid(statusCode) {
   return statusCodes.includes(statusCode);
@@ -30,6 +48,7 @@ function isValid(statusCode) {
  * Build a valid reponse message.
  *
  * @param {number} statusCode
+ * @param {object} headers
  * @param {object|array} body
  *
  * @return {object}
@@ -37,20 +56,26 @@ function isValid(statusCode) {
 
 function buildJsonResponse({
   statusCode,
+  headers = {},
   body
 }) {
-  if ((statusCode == null ? void 0 : statusCode.constructor.name) !== 'Number' || !isValid(statusCode)) {
+  if ((statusCode == null ? void 0 : statusCode.constructor) !== Number || !isValid(statusCode)) {
     throw new Error('statusCode must have a valid http status code');
   }
 
-  if ((body == null ? void 0 : body.constructor.name) !== 'Object' && (body == null ? void 0 : body.constructor.name) !== 'Array') {
+  if ((headers == null ? void 0 : headers.constructor) !== Object) {
+    throw new Error('headers must have a valid object');
+  }
+
+  if ((body == null ? void 0 : body.constructor) !== Object && (body == null ? void 0 : body.constructor) !== Array) {
     throw new Error('body must have a valid object');
   }
 
   return {
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: _extends({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store, max-age=0'
+    }, headers),
     statusCode,
     body
   };

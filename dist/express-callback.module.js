@@ -30,6 +30,7 @@ function isValid(statusCode) {
  * Build a valid reponse message.
  *
  * @param {number} statusCode
+ * @param {object} headers
  * @param {object|array} body
  *
  * @return {object}
@@ -37,19 +38,26 @@ function isValid(statusCode) {
 
 function buildJsonResponse({
   statusCode,
+  headers = {},
   body
 }) {
-  if (statusCode?.constructor.name !== 'Number' || !isValid(statusCode)) {
+  if (statusCode?.constructor !== Number || !isValid(statusCode)) {
     throw new Error('statusCode must have a valid http status code');
   }
 
-  if (body?.constructor.name !== 'Object' && body?.constructor.name !== 'Array') {
+  if (headers?.constructor !== Object) {
+    throw new Error('headers must have a valid object');
+  }
+
+  if (body?.constructor !== Object && body?.constructor !== Array) {
     throw new Error('body must have a valid object');
   }
 
   return {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store, max-age=0',
+      ...headers
     },
     statusCode,
     body

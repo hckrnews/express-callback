@@ -25,6 +25,7 @@ export default function buildJsonResponse({ statusCode, headers = {}, body }) {
     return {
         headers: {
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, max-age=0',
             ...headers,
         },
         statusCode,

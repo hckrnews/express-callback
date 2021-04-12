@@ -10,6 +10,7 @@ const TestCases = [
         expectedResult: {
             headers: {
                 'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, max-age=0',
             },
             statusCode: 200,
             body: {},
@@ -29,6 +30,7 @@ const TestCases = [
         expectedResult: {
             headers: {
                 'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, max-age=0',
                 test: 'ok',
             },
             statusCode: 201,
