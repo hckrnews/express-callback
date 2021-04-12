@@ -17,7 +17,7 @@ export default function makeExpressCallback({
                 res,
                 meta,
             });
-            const httpResponse = buildJsonResponse(response);
+            const httpResponse = buildJsonResponse(response, specification);
 
             if (httpResponse.headers) {
                 res.set(httpResponse.headers);

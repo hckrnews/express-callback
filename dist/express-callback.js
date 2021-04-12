@@ -31,30 +31,47 @@ function isValid(statusCode) {
 /**
  * Build a valid reponse message.
  *
- * @param {number} statusCode
- * @param {object|array} body
+ * @param {number} statusCode, {object} headers, {object|array} body
+ * @param {object} specification
  *
  * @return {object}
  */
 
 function buildJsonResponse({
-  statusCode,
-  body
-}) {
-  if (statusCode?.constructor.name !== 'Number' || !isValid(statusCode)) {
+  statusCode = 200,
+  headers = {},
+  body = null
+}, specification = {}) {
+  if (statusCode?.constructor !== Number || !isValid(statusCode)) {
     throw new Error('statusCode must have a valid http status code');
   }
 
-  if (body?.constructor.name !== 'Object' && body?.constructor.name !== 'Array') {
+  if (headers?.constructor !== Object) {
+    throw new Error('headers must have a valid object');
+  }
+
+  if (body && body?.constructor !== Object && body?.constructor !== Array) {
     throw new Error('body must have a valid object');
   }
 
+  if (specification?.constructor !== Object) {
+    throw new Error('specification must have a valid object');
+  }
+
+  const defaultBody = {
+    status: true,
+    version: specification?.info?.version ?? 'unknown',
+    timestamp: new Date(),
+    message: 'ok'
+  };
   return {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store, max-age=0',
+      ...headers
     },
     statusCode,
-    body
+    body: body ?? defaultBody
   };
 }
 
@@ -74,7 +91,7 @@ function makeExpressCallback({
         res,
         meta
       });
-      const httpResponse = buildJsonResponse(response);
+      const httpResponse = buildJsonResponse(response, specification);
 
       if (httpResponse.headers) {
         res.set(httpResponse.headers);
