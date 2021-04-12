@@ -3,13 +3,15 @@ import { isValid as isValidStatusCode, statusCodes } from './status-codes';
 /**
  * Build a valid reponse message.
  *
- * @param {number} statusCode
- * @param {object} headers
- * @param {object|array} body
+ * @param {object} statusCode, headers, body
+ * @param {object} specification
  *
  * @return {object}
  */
-export default function buildJsonResponse({ statusCode, headers = {}, body }) {
+export default function buildJsonResponse(
+    { statusCode = 200, headers = {}, body = null },
+    specification = {}
+) {
     if (statusCode?.constructor !== Number || !isValidStatusCode(statusCode)) {
         throw new Error('statusCode must have a valid http status code');
     }
@@ -18,9 +20,20 @@ export default function buildJsonResponse({ statusCode, headers = {}, body }) {
         throw new Error('headers must have a valid object');
     }
 
-    if (body?.constructor !== Object && body?.constructor !== Array) {
+    if (body && body?.constructor !== Object && body?.constructor !== Array) {
         throw new Error('body must have a valid object');
     }
+
+    if (specification?.constructor !== Object) {
+        throw new Error('specification must have a valid object');
+    }
+
+    const defaultBody = {
+        status: true,
+        version: specification?.info?.version ?? 'unknown',
+        timestamp: new Date(),
+        message: 'ok',
+    };
 
     return {
         headers: {
@@ -29,7 +42,7 @@ export default function buildJsonResponse({ statusCode, headers = {}, body }) {
             ...headers,
         },
         statusCode,
-        body,
+        body: body ?? defaultBody,
     };
 }
 

@@ -31,18 +31,17 @@ function isValid(statusCode) {
 /**
  * Build a valid reponse message.
  *
- * @param {number} statusCode
- * @param {object} headers
- * @param {object|array} body
+ * @param {object} statusCode, headers, body
+ * @param {object} specification
  *
  * @return {object}
  */
 
 function buildJsonResponse({
-  statusCode,
+  statusCode = 200,
   headers = {},
-  body
-}) {
+  body = null
+}, specification = {}) {
   if (statusCode?.constructor !== Number || !isValid(statusCode)) {
     throw new Error('statusCode must have a valid http status code');
   }
@@ -51,10 +50,20 @@ function buildJsonResponse({
     throw new Error('headers must have a valid object');
   }
 
-  if (body?.constructor !== Object && body?.constructor !== Array) {
+  if (body && body?.constructor !== Object && body?.constructor !== Array) {
     throw new Error('body must have a valid object');
   }
 
+  if (specification?.constructor !== Object) {
+    throw new Error('specification must have a valid object');
+  }
+
+  const defaultBody = {
+    status: true,
+    version: specification?.info?.version ?? 'unknown',
+    timestamp: new Date(),
+    message: 'ok'
+  };
   return {
     headers: {
       'Content-Type': 'application/json',
@@ -62,7 +71,7 @@ function buildJsonResponse({
       ...headers
     },
     statusCode,
-    body
+    body: body ?? defaultBody
   };
 }
 
@@ -82,7 +91,7 @@ function makeExpressCallback({
         res,
         meta
       });
-      const httpResponse = buildJsonResponse(response);
+      const httpResponse = buildJsonResponse(response, specification);
 
       if (httpResponse.headers) {
         res.set(httpResponse.headers);
