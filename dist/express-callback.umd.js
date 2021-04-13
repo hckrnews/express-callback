@@ -3,7 +3,9 @@
     typeof define === 'function' && define.amd ? define(['exports', 'http'], factory) :
     (global = global || self, factory(global.expressCallback = {}, global.http));
 }(this, (function (exports, http) {
-    http = http && Object.prototype.hasOwnProperty.call(http, 'default') ? http['default'] : http;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var http__default = /*#__PURE__*/_interopDefaultLegacy(http);
 
     const errorCodesStatus = [{
       type: TypeError,
@@ -26,7 +28,7 @@
 
     var getStatusByError = (error => errorCodesStatus.find(errorCode => error instanceof errorCode.type).status);
 
-    const statusCodes = Object.keys(http.STATUS_CODES).map(Number);
+    const statusCodes = Object.keys(http__default['default'].STATUS_CODES).map(Number);
     function isValid(statusCode) {
       return statusCodes.includes(statusCode);
     }
@@ -45,25 +47,27 @@
       headers = {},
       body = null
     }, specification = {}) {
-      if (statusCode?.constructor !== Number || !isValid(statusCode)) {
+      var _specification$info;
+
+      if ((statusCode == null ? void 0 : statusCode.constructor) !== Number || !isValid(statusCode)) {
         throw new Error('statusCode must have a valid http status code');
       }
 
-      if (headers?.constructor !== Object) {
+      if ((headers == null ? void 0 : headers.constructor) !== Object) {
         throw new Error('headers must have a valid object');
       }
 
-      if (body && body?.constructor !== Object && body?.constructor !== Array) {
+      if (body && (body == null ? void 0 : body.constructor) !== Object && (body == null ? void 0 : body.constructor) !== Array) {
         throw new Error('body must have a valid object');
       }
 
-      if (specification?.constructor !== Object) {
+      if ((specification == null ? void 0 : specification.constructor) !== Object) {
         throw new Error('specification must have a valid object');
       }
 
       const defaultBody = {
         status: true,
-        version: specification?.info?.version ?? 'unknown',
+        version: (specification == null ? void 0 : (_specification$info = specification.info) == null ? void 0 : _specification$info.version) ?? 'unknown',
         timestamp: new Date(),
         message: 'ok'
       };
