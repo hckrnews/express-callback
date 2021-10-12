@@ -6,28 +6,12 @@
         "src/error-status.js",
         "src/express-callback.js",
         "src/response.js",
-        "src/status-codes.js",
-        "dist/express-callback.js",
-        "dist/express-callback.js.map",
-        "dist/express-callback.modern.js",
-        "dist/express-callback.modern.js.map",
-        "dist/express-callback.module.js",
-        "dist/express-callback.module.js.map",
-        "dist/express-callback.umd.js",
-        "dist/express-callback.umd.js.map"
+        "src/status-codes.js"
     ],
     "source": "src/express-callback.js",
-    "main": "dist/express-callback.js",
-    "module": "dist/express-callback.module.js",
-    "esmodule": "dist/express-callback.modern.js",
-    "unpkg": "dist/express-callback.umd.js",
-    "umd:main": "dist/express-callback.umd.js",
-    "exports": {
-        ".": {
-            "require": "./dist/express-callback.js",
-            "default": "./dist/express-callback.module.js"
-        }
-    },
+    "main": "src/express-callback.js",
+    "module": "src/express-callback.js",
+    "esmodule": "src/express-callback.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/hckrnews/express-callback.git"
@@ -47,8 +31,6 @@
     "license": "MIT",
     "homepage": "https://github.com/hckrnews/express-callback#readme",
     "scripts": {
-        "build": "microbundle --target node",
-        "dev": "microbundle --target node watch",
         "lint": "eslint src/*.js --config .eslintrc",
         "test": "jest",
         "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
@@ -75,7 +57,6 @@
         "esm": "^3.2.25",
         "jest": "^27.2.4",
         "jscpd": "^3.3.26",
-        "microbundle": "^0.14.0",
         "prettier": "^2.2.1"
     },
     "type": "module",
