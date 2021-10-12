@@ -1,18 +1,41 @@
 {
+    "root": true,
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true
+    },
+    "plugins": [
+        "import"
+    ],
     "extends": [
         "@hckrnews/eslint-config"
     ],
     "rules": {
-        "consistent-return": "warn",
-        "eqeqeq": "warn"
-    },
-    "env": {
-        "es6": true,
-        "node": true,
-        "jquery": false,
-        "browser": true
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "always"
+            }
+        ]
     },
     "parserOptions": {
-        "sourceType": "module"
-    }
+        "sourceType": "module",
+        "parser": "@babel/eslint-parser",
+        "babelOptions": {
+            "configFile": "./babel.config.cjs"
+        }
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/__tests__/*.{j,t}s?(x)",
+                "**/tests/unit/**/*.spec.{j,t}s?(x)"
+            ],
+            "env": {
+                "jest": true
+            }
+        }
+    ]
 }
