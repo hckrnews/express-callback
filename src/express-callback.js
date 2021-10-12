@@ -1,5 +1,9 @@
-import getStatusByError from './error-status';
-import { buildJsonResponse, statusCodes, isValidStatusCode } from './response';
+import getStatusByError from './error-status.js';
+import {
+    buildJsonResponse,
+    statusCodes,
+    isValidStatusCode,
+} from './response.js';
 
 export default function makeExpressCallback({
     controller,
@@ -19,9 +23,7 @@ export default function makeExpressCallback({
             });
             const httpResponse = buildJsonResponse(response, specification);
 
-            if (httpResponse.headers) {
-                res.set(httpResponse.headers);
-            }
+            res.set(httpResponse.headers);
 
             res.type('json');
             res.status(httpResponse.statusCode).send(httpResponse.body);

@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals';
-import { isValid } from '../status-codes';
+import { isValid } from '../status-codes.js';
 
 const TestCases = [
     {

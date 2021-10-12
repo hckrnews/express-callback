@@ -1,4 +1,4 @@
-import { isValid as isValidStatusCode, statusCodes } from './status-codes';
+import { isValid as isValidStatusCode, statusCodes } from './status-codes.js';
 
 /**
  * Build a valid reponse message.

@@ -1,5 +1,5 @@
-import { expect, describe, it } from '@jest/globals'
-import getStatusByError from '../error-status';
+import { expect, describe, it } from '@jest/globals';
+import getStatusByError from '../error-status.js';
 
 const TestCases = [
     {
