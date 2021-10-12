@@ -1,33 +1,17 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "2.1.1",
+    "version": "3.0.0",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
         "src/express-callback.js",
         "src/response.js",
-        "src/status-codes.js",
-        "dist/express-callback.js",
-        "dist/express-callback.js.map",
-        "dist/express-callback.modern.js",
-        "dist/express-callback.modern.js.map",
-        "dist/express-callback.module.js",
-        "dist/express-callback.module.js.map",
-        "dist/express-callback.umd.js",
-        "dist/express-callback.umd.js.map"
+        "src/status-codes.js"
     ],
     "source": "src/express-callback.js",
-    "main": "dist/express-callback.js",
-    "module": "dist/express-callback.module.js",
-    "esmodule": "dist/express-callback.modern.js",
-    "unpkg": "dist/express-callback.umd.js",
-    "umd:main": "dist/express-callback.umd.js",
-    "exports": {
-        ".": {
-            "require": "./dist/express-callback.js",
-            "default": "./dist/express-callback.module.js"
-        }
-    },
+    "main": "src/express-callback.js",
+    "module": "src/express-callback.js",
+    "esmodule": "src/express-callback.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/hckrnews/express-callback.git"
@@ -47,33 +31,33 @@
     "license": "MIT",
     "homepage": "https://github.com/hckrnews/express-callback#readme",
     "scripts": {
-        "build": "microbundle --target node",
-        "dev": "microbundle --target node watch",
         "lint": "eslint src/*.js --config .eslintrc",
         "test": "jest",
-        "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+        "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+        "cpd": "node_modules/jscpd/bin/jscpd src",
+        "vulnerabilities": "npm audit --only=prod"
     },
     "devDependencies": {
-        "@babel/core": "^7.12.3",
-        "@babel/preset-env": "^7.12.1",
-        "@hckrnews/eslint-config": "^1.0.0",
-        "babel-eslint": "^10.1.0",
-        "babel-jest": "^26.6.3",
-        "codecov": "^3.7.2",
-        "coveralls": "^3.1.0",
-        "eslint": "^7.9.0",
+        "@babel/core": "^7.9.0",
+        "@babel/eslint-parser": "^7.14.7",
+        "@babel/plugin-transform-modules-commonjs": "^7.14.0",
+        "@babel/preset-env": "^7.9.5",
+        "@hckrnews/eslint-config": "^2.0.0",
+        "@jest/globals": "^27.2.4",
+        "babel-jest": "^27.2.4",
+        "codecov": "^3.8.3",
+        "coveralls": "^3.1.1",
+        "eslint": "^7.32.0",
         "eslint-config-airbnb": "^18.2.0",
-        "eslint-config-prettier": "^6.11.0",
-        "eslint-plugin-html": "^6.1.0",
-        "eslint-plugin-import": "^2.22.0",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
-        "eslint-plugin-prettier": "^3.1.4",
-        "eslint-plugin-react": "^7.21.2",
-        "eslint-plugin-vue": "^6.2.2",
+        "eslint-config-prettier": "^8.2.0",
+        "eslint-plugin-html": "^6.1.2",
+        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.4.1",
         "esm": "^3.2.25",
-        "jest": "^26.6.3",
-        "microbundle": "^0.12.3",
-        "prettier": "^2.2.0"
+        "jest": "^27.2.4",
+        "jscpd": "^3.3.26",
+        "prettier": "^2.2.1"
     },
     "type": "module",
     "engines": {

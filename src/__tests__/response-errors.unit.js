@@ -1,4 +1,5 @@
-import { buildJsonResponse } from '../response';
+import { expect, describe, it } from '@jest/globals';
+import { buildJsonResponse } from '../response.js';
 
 const TestCases = [
     {
