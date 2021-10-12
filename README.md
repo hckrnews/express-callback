@@ -1,6 +1,10 @@
 # Express callback
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-stats] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Codecov Status][codecov-image]][codecov-url] [![Scrutinizer Code Quality][scrutinizer-image]][scrutinizer-url]
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-stats]
+[![Build Status][travis-image]][travis-url]
+[![Coveralls Status][coveralls-image]][coveralls-url]
+[![Scrutinizer Code Quality][scrutinizer-image]][scrutinizer-url]
 
 
 ```javascript
