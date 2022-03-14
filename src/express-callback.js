@@ -4,13 +4,16 @@ import {
     statusCodes,
     isValidStatusCode,
 } from './response.js';
+import makeSentry from './logging/sentry.js';
 
 export default function makeExpressCallback({
     controller,
     specification,
     logger,
+    logging,
     meta,
 }) {
+    const Sentry = logging ? makeSentry(logging) : null;
     return async (context, req, res) => {
         try {
             const response = await controller({
@@ -39,6 +42,10 @@ export default function makeExpressCallback({
                 timestamp: new Date(),
                 message: error.message,
             });
+
+            if (Sentry) {
+                Sentry.captureException(error);
+            }
         }
     };
 }

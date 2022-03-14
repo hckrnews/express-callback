@@ -1,12 +1,13 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "3.0.2",
+    "version": "3.1.0",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
         "src/express-callback.js",
         "src/response.js",
-        "src/status-codes.js"
+        "src/status-codes.js",
+        "src/logging/sentry.js"
     ],
     "source": "src/express-callback.js",
     "main": "src/express-callback.js",
@@ -42,25 +43,31 @@
         "@babel/eslint-parser": "^7.14.7",
         "@babel/plugin-transform-modules-commonjs": "^7.14.0",
         "@babel/preset-env": "^7.9.5",
-        "@hckrnews/eslint-config": "^2.0.0",
-        "@jest/globals": "^27.2.4",
-        "babel-jest": "^27.2.4",
+        "@hckrnews/eslint-config": "^2.1.0",
+        "@jest/globals": "^27.4.2",
+        "babel-jest": "^27.4.2",
         "codecov": "^3.8.3",
         "coveralls": "^3.1.1",
-        "eslint": "^7.32.0",
-        "eslint-config-airbnb": "^18.2.0",
-        "eslint-config-prettier": "^8.2.0",
+        "eslint": "^8.3.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-html": "^6.1.2",
-        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-jsx-a11y": "^6.4.1",
-        "eslint-plugin-prettier": "^3.4.1",
+        "eslint-plugin-prettier": "^4.0.0",
         "esm": "^3.2.25",
-        "jest": "^27.2.4",
-        "jscpd": "^3.3.26",
-        "prettier": "^2.2.1"
+        "jest": "^27.4.2",
+        "jscpd": "^3.4.2",
+        "prettier": "^2.5.0"
     },
     "type": "module",
     "engines": {
-        "node": ">= 10.13"
+        "node": ">= 12"
+    },
+    "dependencies": {
+        "@hckrnews/objects": "^3.6.0",
+        "@sentry/integrations": "^6.18.2",
+        "@sentry/node": "^6.18.2",
+        "@sentry/tracing": "^6.18.2"
     }
 }
