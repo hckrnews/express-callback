@@ -140,4 +140,31 @@ describe('Test the express callback', () => {
         expect(currentRes.values.send.status).toEqual(422);
         expect(currentRes.values.send.message).toEqual('example error');
     });
+
+    it('It should work with the logging', async () => {
+        const currentRes = { ...res, values: { ...res.values } };
+        const controller = () => {
+            throw new Error('example error');
+        };
+
+        const expressCallback = makeExpressCallback({
+            controller,
+            specification,
+            logger,
+            logging: {
+                dsn: 'https://12345678@234567151173.ingest.sentry.io/1234567',
+                release: '1.2.3',
+            },
+            meta,
+        });
+        const context = {};
+        const req = {};
+        await expressCallback(context, req, currentRes);
+
+        expect(currentRes.values.set).toEqual(null);
+        expect(currentRes.values.status).toEqual(500);
+        expect(currentRes.values.type).toEqual(null);
+        expect(currentRes.values.send.status).toEqual(500);
+        expect(currentRes.values.send.message).toEqual('example error');
+    });
 });
