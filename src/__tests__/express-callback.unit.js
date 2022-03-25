@@ -141,7 +141,7 @@ describe('Test the express callback', () => {
         expect(currentRes.values.send.message).toEqual('example error');
     });
 
-    it('It should work with the logging', async () => {
+    it('It should work with the error logger', async () => {
         const currentRes = { ...res, values: { ...res.values } };
         const controller = () => {
             throw new Error('example error');
@@ -151,10 +151,7 @@ describe('Test the express callback', () => {
             controller,
             specification,
             logger,
-            logging: {
-                dsn: 'https://12345678@234567151173.ingest.sentry.io/1234567',
-                release: '1.2.3',
-            },
+            errorLogger: { error: (error) => {} },
             meta,
         });
         const context = {};
