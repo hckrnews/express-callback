@@ -50,13 +50,7 @@ api.register({
         controller: getPetsController,
         specification,
         logger,
-        logging: {
-            dsn: 'https://12345678@234567151173.ingest.sentry.io/1234567',
-            release: '1.2.3',
-            environment: 'production',
-            tracesSampleRate: 1,
-            debug: false
-        }
+        errorLogger: { error: (error) => {} },
         meta
     })
 });
