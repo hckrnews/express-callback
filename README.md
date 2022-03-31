@@ -25,6 +25,7 @@ const getPetsController = ({
     context,
     specification,
     logger,
+    errorLogger,
     req,
     res,
     meta,
