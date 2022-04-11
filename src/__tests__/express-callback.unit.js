@@ -32,6 +32,7 @@ const specification = {
 
 const logger = {
     error: () => {},
+    warn: () => {},
 };
 
 const meta = {};
