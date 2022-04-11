@@ -31,9 +31,7 @@ export default function makeExpressCallback({
         } catch (error) {
             const errorCodeStatus = getStatusByError(error);
 
-            if (errorCodeStatus >= 500) {
-                logger.error(error);
-            }
+            logger.error(error);
 
             res.status(errorCodeStatus).send({
                 status: errorCodeStatus,
