@@ -32,7 +32,7 @@ export default function makeExpressCallback({
             const errorCodeStatus = getStatusByError(error);
 
             if (errorCodeStatus >= 500) {
-                logger.error(error.message);
+                logger.error(error);
             }
 
             res.status(errorCodeStatus).send({
