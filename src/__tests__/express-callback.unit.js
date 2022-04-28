@@ -22,6 +22,12 @@ const res = {
             },
         };
     },
+    json(value) {
+        this.values.send = value;
+    },
+    send(value) {
+        this.values.send = value;
+    }
 };
 
 const specification = {
@@ -43,7 +49,7 @@ describe('Test the express callback', () => {
 
         const controller = () => ({
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/xml',
                 'Cache-Control': 'no-store, max-age=0',
                 example: 'ok',
             },
@@ -62,12 +68,44 @@ describe('Test the express callback', () => {
         await expressCallback(context, req, currentRes);
 
         expect(currentRes.values.set).toEqual({
-            'Content-Type': 'application/json',
+            'Content-Type': 'text/xml',
             'Cache-Control': 'no-store, max-age=0',
             example: 'ok',
         });
         expect(currentRes.values.status).toEqual(200);
-        expect(currentRes.values.type).toEqual('application/json');
+        expect(currentRes.values.type).toEqual('text/xml');
+    });
+
+    it('It should work with the accept header', async () => {
+        const currentRes = { ...res, values: { ...res.values } };
+
+        const controller = () => ({
+            statusCode: 200,
+            body: {},
+        });
+
+        const expressCallback = makeExpressCallback({
+            controller,
+            specification,
+            logger,
+            meta,
+        });
+        const context = {
+            request: {
+                headers: {
+                    accept: 'text/xml'
+                }
+            }
+        };
+        const req = {};
+        await expressCallback(context, req, currentRes);
+
+        expect(currentRes.values.set).toEqual({
+            'Content-Type': 'text/xml',
+            'Cache-Control': 'no-store, max-age=0',
+        });
+        expect(currentRes.values.status).toEqual(200);
+        expect(currentRes.values.type).toEqual('text/xml');
     });
 
     it('It should work without the headers', async () => {

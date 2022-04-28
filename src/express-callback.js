@@ -20,7 +20,9 @@ export default function makeExpressCallback({
             });
 
             const contentType =
-                context?.request?.headers?.accept ?? 'application/json';
+                response?.headers?.['Content-Type'] ??
+                context?.request?.headers?.accept ??
+                'application/json';
 
             const httpResponse = buildResponse(
                 response,
@@ -31,7 +33,13 @@ export default function makeExpressCallback({
             res.set(httpResponse.headers);
 
             res.type(contentType);
-            res.status(httpResponse.statusCode).send(httpResponse.body);
+            res.status(httpResponse.statusCode);
+
+            if (contentType === 'application/json') {
+                res.json(httpResponse.body);
+            } else {
+                res.send(httpResponse.body);
+            }
         } catch (error) {
             const errorCodeStatus = getStatusByError(error);
 
