@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals';
-import { buildJsonResponse } from '../response.js';
+import { buildResponse } from '../response.js';
 
 const TestCases = [
     {
@@ -52,7 +52,7 @@ describe.each(TestCases)(
     'Response entity errors',
     ({ description, params, specification, expectedResult }) => {
         it(description, () => {
-            expect(() => buildJsonResponse(params, specification)).toThrow(
+            expect(() => buildResponse(params, specification)).toThrow(
                 expectedResult
             );
         });

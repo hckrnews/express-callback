@@ -1,9 +1,5 @@
 import getStatusByError from './error-status.js';
-import {
-    buildJsonResponse,
-    statusCodes,
-    isValidStatusCode,
-} from './response.js';
+import { buildResponse, statusCodes, isValidStatusCode } from './response.js';
 
 export default function makeExpressCallback({
     controller,
@@ -22,11 +18,19 @@ export default function makeExpressCallback({
                 res,
                 meta,
             });
-            const httpResponse = buildJsonResponse(response, specification);
+
+            const contentType =
+                context?.request?.headers?.accept ?? 'application/json';
+
+            const httpResponse = buildResponse(
+                response,
+                specification,
+                contentType
+            );
 
             res.set(httpResponse.headers);
 
-            res.type('json');
+            res.type(contentType);
             res.status(httpResponse.statusCode).send(httpResponse.body);
         } catch (error) {
             const errorCodeStatus = getStatusByError(error);
@@ -49,7 +53,7 @@ export default function makeExpressCallback({
 export {
     makeExpressCallback,
     getStatusByError,
-    buildJsonResponse,
+    buildResponse,
     statusCodes,
     isValidStatusCode,
 };
