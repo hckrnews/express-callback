@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals';
-import { buildJsonResponse } from '../response.js';
+import { buildResponse } from '../response.js';
 
 const TestCases = [
     {
@@ -87,7 +87,7 @@ describe.each(TestCases)(
     'Response entity',
     ({ description, params, specification, expectedResult }) => {
         it(description, () => {
-            expect(buildJsonResponse(params, specification)).toEqual(
+            expect(buildResponse(params, specification)).toEqual(
                 expectedResult
             );
         });
@@ -96,7 +96,7 @@ describe.each(TestCases)(
 
 describe('Response without a specification', () => {
     it('It should generate a response body if no body is send', () => {
-        const response = buildJsonResponse({});
+        const response = buildResponse({});
         expect(response.headers).toEqual({
             'Content-Type': 'application/json',
             'Cache-Control': 'no-store, max-age=0',
@@ -110,7 +110,7 @@ describe('Response without a specification', () => {
 
 describe('Response with a specification', () => {
     it('It should generate a response body if no body is send', () => {
-        const response = buildJsonResponse(
+        const response = buildResponse(
             {},
             {
                 info: {

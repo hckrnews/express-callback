@@ -5,12 +5,14 @@ import { isValid as isValidStatusCode, statusCodes } from './status-codes.js';
  *
  * @param {number} statusCode, {object} headers, {object|array} body
  * @param {object} specification
+ * @param {string} contentType
  *
  * @return {object}
  */
-export default function buildJsonResponse(
+export default function buildResponse(
     { statusCode = 200, headers = {}, body = null },
-    specification = {}
+    specification = {},
+    contentType = 'application/json'
 ) {
     if (statusCode?.constructor !== Number || !isValidStatusCode(statusCode)) {
         throw new Error('statusCode must have a valid http status code');
@@ -20,7 +22,12 @@ export default function buildJsonResponse(
         throw new Error('headers must have a valid object');
     }
 
-    if (body && body?.constructor !== Object && body?.constructor !== Array) {
+    if (
+        body &&
+        body?.constructor !== Object &&
+        body?.constructor !== Array &&
+        contentType === 'application/json'
+    ) {
         throw new Error('body must have a valid object');
     }
 
@@ -37,7 +44,7 @@ export default function buildJsonResponse(
 
     return {
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': contentType,
             'Cache-Control': 'no-store, max-age=0',
             ...headers,
         },
@@ -46,4 +53,4 @@ export default function buildJsonResponse(
     };
 }
 
-export { buildJsonResponse, statusCodes, isValidStatusCode };
+export { buildResponse, statusCodes, isValidStatusCode };

@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "3.2.5",
+    "version": "4.0.0",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -32,10 +32,13 @@
     "homepage": "https://github.com/hckrnews/express-callback#readme",
     "scripts": {
         "lint": "eslint src/*.js --config .eslintrc",
+        "lint:report": "eslint src/*.js --config .eslintrc -f json -o report.json",
+        "lint:fix": "eslint src/*.js --config .eslintrc --fix",
         "test": "jest",
+        "test:watch": "jest src --watch",
         "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
         "cpd": "node_modules/jscpd/bin/jscpd src",
-        "vulnerabilities": "npm audit --only=prod"
+        "vulnerabilities": "npm audit --production"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
@@ -43,8 +46,8 @@
         "@babel/plugin-transform-modules-commonjs": "^7.14.0",
         "@babel/preset-env": "^7.9.5",
         "@hckrnews/eslint-config": "^2.1.0",
-        "@jest/globals": "^27.4.2",
-        "babel-jest": "^27.4.2",
+        "@jest/globals": "^28.0.2",
+        "babel-jest": "^28.0.2",
         "codecov": "^3.8.3",
         "coveralls": "^3.1.1",
         "eslint": "^8.3.0",
@@ -55,7 +58,7 @@
         "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-prettier": "^4.0.0",
         "esm": "^3.2.25",
-        "jest": "^27.4.2",
+        "jest": "^28.0.2",
         "jscpd": "^3.4.2",
         "prettier": "^2.5.0"
     },

@@ -67,7 +67,7 @@ describe('Test the express callback', () => {
             example: 'ok',
         });
         expect(currentRes.values.status).toEqual(200);
-        expect(currentRes.values.type).toEqual('json');
+        expect(currentRes.values.type).toEqual('application/json');
     });
 
     it('It should work without the headers', async () => {
@@ -93,7 +93,7 @@ describe('Test the express callback', () => {
             'Cache-Control': 'no-store, max-age=0',
         });
         expect(currentRes.values.status).toEqual(200);
-        expect(currentRes.values.type).toEqual('json');
+        expect(currentRes.values.type).toEqual('application/json');
     });
 
     it('Test the catcher', async () => {
