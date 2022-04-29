@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -67,6 +67,7 @@
         "node": ">= 12"
     },
     "dependencies": {
-        "@hckrnews/objects": "^4.0.2"
+        "@hckrnews/objects": "^4.0.2",
+        "mime": "^3.0.0"
     }
 }
