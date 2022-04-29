@@ -10,7 +10,7 @@ import { isValid as isValidStatusCode, statusCodes } from './status-codes.js';
  * @return {object}
  */
 export default function buildResponse(
-    { statusCode = 200, headers = {}, body = null },
+    { statusCode = 200, headers = {}, body = null, attachment = false },
     specification = {},
     contentType = 'application/json'
 ) {
@@ -50,6 +50,7 @@ export default function buildResponse(
         },
         statusCode,
         body: body ?? defaultBody,
+        attachment,
     };
 }
 

@@ -7,6 +7,7 @@ const res = {
         type: null,
         status: null,
         send: null,
+        headers: {}
     },
     set(value) {
         this.values.set = value;
@@ -27,6 +28,9 @@ const res = {
     },
     send(value) {
         this.values.send = value;
+    },
+    setHeader(key, value) {
+        this.values.headers[key] = value;
     }
 };
 
@@ -74,6 +78,43 @@ describe('Test the express callback', () => {
         });
         expect(currentRes.values.status).toEqual(200);
         expect(currentRes.values.type).toEqual('text/xml');
+    });
+
+    it('It should work with attachments', async () => {
+        const currentRes = { ...res, values: { ...res.values } };
+
+        const controller = () => ({
+            headers: {},
+            statusCode: 200,
+            body: {},
+            attachment: true
+        });
+
+        const expressCallback = makeExpressCallback({
+            controller,
+            specification,
+            logger,
+            meta,
+        });
+        const context = {
+            request: {
+                headers: {
+                    accept: 'text/csv'
+                }
+            }
+        };
+        const req = {};
+        await expressCallback(context, req, currentRes);
+
+        expect(currentRes.values.set).toEqual({
+            'Content-Type': 'text/csv',
+            'Cache-Control': 'no-store, max-age=0'
+        });
+        expect(currentRes.values.status).toEqual(200);
+        expect(currentRes.values.type).toEqual('text/csv');
+        expect(currentRes.values.headers).toEqual({
+            'Content-Disposition': 'attachment; filename="download.csv";'
+        });
     });
 
     it('It should work with the accept header', async () => {

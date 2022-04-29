@@ -13,6 +13,7 @@ const TestCases = [
             },
             statusCode: 200,
             body: {},
+            attachment: false
         },
     },
     {
@@ -33,6 +34,7 @@ const TestCases = [
             },
             statusCode: 204,
             body: {},
+            attachment: false
         },
     },
     {
@@ -53,6 +55,7 @@ const TestCases = [
             },
             statusCode: 201,
             body: {},
+            attachment: false
         },
     },
     {
@@ -60,18 +63,19 @@ const TestCases = [
         params: {
             statusCode: 201,
             headers: {
-                'Content-Type': 'text/html',
+                'Content-Type': 'text/csv',
                 'Cache-Control': 'private',
                 test: 'ok',
             },
             body: {
                 example: 42,
             },
+            attachment: true
         },
         specification: {},
         expectedResult: {
             headers: {
-                'Content-Type': 'text/html',
+                'Content-Type': 'text/csv',
                 'Cache-Control': 'private',
                 test: 'ok',
             },
@@ -79,6 +83,7 @@ const TestCases = [
             body: {
                 example: 42,
             },
+            attachment: true
         },
     },
 ];

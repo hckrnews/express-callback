@@ -1,3 +1,4 @@
+import mime from 'mime';
 import getStatusByError from './error-status.js';
 import { buildResponse, statusCodes, isValidStatusCode } from './response.js';
 
@@ -34,6 +35,14 @@ export default function makeExpressCallback({
 
             res.type(contentType);
             res.status(httpResponse.statusCode);
+
+            const extension = mime.getExtension(contentType);
+            if (httpResponse?.attachment === true) {
+                res.setHeader(
+                    'Content-Disposition',
+                    `attachment; filename="download.${extension}";`
+                );
+            }
 
             if (contentType === 'application/json') {
                 res.json(httpResponse.body);
