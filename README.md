@@ -41,6 +41,7 @@ const getPetsController = ({
         body: {
 
         },
+        attachment: false,
     }
 }
 
