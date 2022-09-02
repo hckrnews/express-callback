@@ -20,10 +20,10 @@ export default function makeExpressCallback({
                 meta,
             });
 
+            // also check if we can auto use the accept header
+            // context.request.headers.accept
             const contentType =
-                response?.headers?.['Content-Type'] ??
-                context?.request?.headers?.accept ??
-                'application/json';
+                response?.headers?.['Content-Type'] ?? 'application/json';
 
             const httpResponse = buildResponse(
                 response,

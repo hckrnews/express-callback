@@ -87,7 +87,9 @@ describe('Test the express callback', () => {
         const currentRes = { ...res, values: { ...res.values } };
 
         const controller = () => ({
-            headers: {},
+            headers: {
+                'Content-Type': 'text/csv',
+            },
             statusCode: 200,
             body: {},
             attachment: true,
@@ -126,6 +128,9 @@ describe('Test the express callback', () => {
         const controller = () => ({
             statusCode: 200,
             body: {},
+            headers: {
+                'Content-Type': 'text/xml',
+            },
         });
 
         const expressCallback = makeExpressCallback({
