@@ -54,7 +54,7 @@ export default function makeExpressCallback({
 
             logger.error(error);
 
-            res.status(errorCodeStatus).send({
+            res.status(errorCodeStatus).json({
                 status: errorCodeStatus,
                 timestamp: new Date(),
                 message: error.message,

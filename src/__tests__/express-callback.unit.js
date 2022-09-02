@@ -7,7 +7,7 @@ const res = {
         type: null,
         status: null,
         send: null,
-        headers: {}
+        headers: {},
     },
     set(value) {
         this.values.set = value;
@@ -21,6 +21,9 @@ const res = {
             send: (value2) => {
                 this.values.send = value2;
             },
+            json: (value2) => {
+                this.values.send = value2;
+            },
         };
     },
     json(value) {
@@ -31,7 +34,7 @@ const res = {
     },
     setHeader(key, value) {
         this.values.headers[key] = value;
-    }
+    },
 };
 
 const specification = {
@@ -87,7 +90,7 @@ describe('Test the express callback', () => {
             headers: {},
             statusCode: 200,
             body: {},
-            attachment: true
+            attachment: true,
         });
 
         const expressCallback = makeExpressCallback({
@@ -99,21 +102,21 @@ describe('Test the express callback', () => {
         const context = {
             request: {
                 headers: {
-                    accept: 'text/csv'
-                }
-            }
+                    accept: 'text/csv',
+                },
+            },
         };
         const req = {};
         await expressCallback(context, req, currentRes);
 
         expect(currentRes.values.set).toEqual({
             'Content-Type': 'text/csv',
-            'Cache-Control': 'no-store, max-age=0'
+            'Cache-Control': 'no-store, max-age=0',
         });
         expect(currentRes.values.status).toEqual(200);
         expect(currentRes.values.type).toEqual('text/csv');
         expect(currentRes.values.headers).toEqual({
-            'Content-Disposition': 'attachment; filename="download.csv";'
+            'Content-Disposition': 'attachment; filename="download.csv";',
         });
     });
 
@@ -134,9 +137,9 @@ describe('Test the express callback', () => {
         const context = {
             request: {
                 headers: {
-                    accept: 'text/xml'
-                }
-            }
+                    accept: 'text/xml',
+                },
+            },
         };
         const req = {};
         await expressCallback(context, req, currentRes);
