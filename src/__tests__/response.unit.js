@@ -13,7 +13,7 @@ const TestCases = [
             },
             statusCode: 200,
             body: {},
-            attachment: false
+            attachment: false,
         },
     },
     {
@@ -34,7 +34,7 @@ const TestCases = [
             },
             statusCode: 204,
             body: {},
-            attachment: false
+            attachment: false,
         },
     },
     {
@@ -55,7 +55,7 @@ const TestCases = [
             },
             statusCode: 201,
             body: {},
-            attachment: false
+            attachment: false,
         },
     },
     {
@@ -70,7 +70,7 @@ const TestCases = [
             body: {
                 example: 42,
             },
-            attachment: true
+            attachment: true,
         },
         specification: {},
         expectedResult: {
@@ -83,7 +83,7 @@ const TestCases = [
             body: {
                 example: 42,
             },
-            attachment: true
+            attachment: true,
         },
     },
 ];
