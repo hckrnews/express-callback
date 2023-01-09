@@ -2,6 +2,21 @@ import mime from 'mime';
 import getStatusByError from './error-status.js';
 import { buildResponse, statusCodes, isValidStatusCode } from './response.js';
 
+/**
+ * @typedef {(context: object, req: object, res: object) => Promise<void>} expressCallback
+ */
+
+/**
+ * Make Express callback
+ *
+ * @param {object} param
+ * @param {Function|Promise<any>} param.controller
+ * @param {object} param.specification
+ * @param {object} param.logger
+ * @param {object=} param.errorLogger
+ * @param {object=} param.meta
+ * @return {expressCallback}
+ */
 export default function makeExpressCallback({
     controller,
     specification,
@@ -9,6 +24,15 @@ export default function makeExpressCallback({
     errorLogger = null,
     meta,
 }) {
+    /**
+     * Handle controller
+     *
+     * @async
+     * @param {object} context
+     * @param {object} req
+     * @param {object} res
+     * @returns {Promise<void>}
+     */
     return async (context, req, res) => {
         try {
             const response = await controller({

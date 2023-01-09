@@ -3,7 +3,7 @@
     "env": {
         "es6": true,
         "node": true,
-        "browser": true
+        "browser": false
     },
     "plugins": [
         "import"
@@ -17,6 +17,14 @@
             "ignorePackages",
             {
                 "js": "always"
+            }
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120,
+                "comments": 120,
+                "tabWidth": 4
             }
         ]
     },
