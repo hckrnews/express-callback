@@ -3,7 +3,11 @@ import { isValid as isValidStatusCode, statusCodes } from './status-codes.js';
 /**
  * Build a valid reponse message.
  *
- * @param {number} statusCode, {object} headers, {object|array} body
+ * @param {object} param
+ * @param {number} param.statusCode
+ * @param {object} param.headers
+ * @param {object|array} param.body
+ * @param {boolean} param.attachment
  * @param {object} specification
  * @param {string} contentType
  *
