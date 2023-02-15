@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "4.1.1",
+    "version": "4.1.2",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -45,7 +45,7 @@
         "@babel/eslint-parser": "^7.14.7",
         "@babel/plugin-transform-modules-commonjs": "^7.14.0",
         "@babel/preset-env": "^7.9.5",
-        "@hckrnews/eslint-config": "^2.1.0",
+        "@hckrnews/eslint-config": "^3.0.0",
         "@jest/globals": "^29.3.1",
         "babel-jest": "^29.3.1",
         "codecov": "^3.8.3",
@@ -64,7 +64,7 @@
     },
     "type": "module",
     "engines": {
-        "node": ">= 14"
+        "node": ">= 16"
     },
     "dependencies": {
         "mime": "^3.0.0"

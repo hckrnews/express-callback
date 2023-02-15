@@ -68,7 +68,9 @@ export default function makeExpressCallback({
                 );
             }
 
-            if (contentType === 'application/json') {
+            if (!httpResponse.body) {
+                res.end();
+            } else if (contentType === 'application/json') {
                 res.json(httpResponse.body);
             } else {
                 res.send(httpResponse.body);

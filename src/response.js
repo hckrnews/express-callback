@@ -27,6 +27,7 @@ export default function buildResponse(
     }
 
     if (
+        statusCode !== 201 &&
         body &&
         body?.constructor !== Object &&
         body?.constructor !== Array &&
@@ -53,7 +54,7 @@ export default function buildResponse(
             ...headers,
         },
         statusCode,
-        body: body ?? defaultBody,
+        body: body ?? (statusCode >= 400 ? defaultBody : null),
         attachment,
     };
 }
