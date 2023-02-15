@@ -24,7 +24,7 @@ const res = {
             json: (value2) => {
                 this.values.send = value2;
             },
-            end: () => true
+            end: () => true,
         };
     },
     json(value) {
@@ -90,7 +90,7 @@ describe('Test the express callback', () => {
 
         const controller = () => ({
             headers: {
-                'Content-Type': 'text/xml',
+                'Content-Type': 'application/json',
                 'Cache-Control': 'no-store, max-age=0',
                 example: 'ok',
             },
@@ -108,13 +108,50 @@ describe('Test the express callback', () => {
         await expressCallback(context, req, currentRes);
 
         expect(currentRes.values.set).toEqual({
-            'Content-Type': 'text/xml',
+            'Content-Type': 'application/json',
             'Cache-Control': 'no-store, max-age=0',
             example: 'ok',
         });
         expect(currentRes.values.status).toEqual(201);
-        expect(currentRes.values.type).toEqual('text/xml');
+        expect(currentRes.values.type).toEqual('application/json');
         expect(currentRes.values.send).toEqual(null);
+    });
+
+    it('Http status 201 with response body', async () => {
+        const currentRes = { ...res, values: { ...res.values } };
+
+        const controller = () => ({
+            headers: {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, max-age=0',
+                example: 'ok',
+            },
+            statusCode: 201,
+            body: {
+                test: 'ok',
+            },
+        });
+
+        const expressCallback = makeExpressCallback({
+            controller,
+            specification,
+            logger,
+            meta,
+        });
+        const context = {};
+        const req = {};
+        await expressCallback(context, req, currentRes);
+
+        expect(currentRes.values.set).toEqual({
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, max-age=0',
+            example: 'ok',
+        });
+        expect(currentRes.values.status).toEqual(201);
+        expect(currentRes.values.type).toEqual('application/json');
+        expect(currentRes.values.send).toEqual({
+            test: 'ok',
+        });
     });
 
     it('It should work with attachments', async () => {

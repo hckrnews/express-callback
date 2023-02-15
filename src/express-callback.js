@@ -68,7 +68,7 @@ export default function makeExpressCallback({
                 );
             }
 
-            if (httpResponse.statusCode === 201) {
+            if (!httpResponse.body) {
                 res.end();
             } else if (contentType === 'application/json') {
                 res.json(httpResponse.body);

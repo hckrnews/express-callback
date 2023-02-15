@@ -54,7 +54,7 @@ export default function buildResponse(
             ...headers,
         },
         statusCode,
-        body: body ?? defaultBody,
+        body: body ?? (statusCode >= 400 ? defaultBody : null),
         attachment,
     };
 }

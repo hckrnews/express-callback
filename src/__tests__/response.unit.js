@@ -101,12 +101,14 @@ describe.each(TestCases)(
 
 describe('Response without a specification', () => {
     it('It should generate a response body if no body is send', () => {
-        const response = buildResponse({});
+        const response = buildResponse({
+            statusCode: 418,
+        });
         expect(response.headers).toEqual({
             'Content-Type': 'application/json',
             'Cache-Control': 'no-store, max-age=0',
         });
-        expect(response.statusCode).toEqual(200);
+        expect(response.statusCode).toEqual(418);
         expect(response.body.status).toEqual(true);
         expect(response.body.version).toEqual('unknown');
         expect(response.body.message).toEqual('ok');
@@ -114,9 +116,11 @@ describe('Response without a specification', () => {
 });
 
 describe('Response with a specification', () => {
-    it('It should generate a response body if no body is send', () => {
+    it('It shouldnt generate a response body if no body is send for status < 400', () => {
         const response = buildResponse(
-            {},
+            {
+                statusCode: 201,
+            },
             {
                 info: {
                     version: '1.2.3',
@@ -127,9 +131,28 @@ describe('Response with a specification', () => {
             'Content-Type': 'application/json',
             'Cache-Control': 'no-store, max-age=0',
         });
-        expect(response.statusCode).toEqual(200);
-        expect(response.body.status).toEqual(true);
-        expect(response.body.version).toEqual('1.2.3');
-        expect(response.body.message).toEqual('ok');
+        expect(response.statusCode).toEqual(201);
+        expect(response.body).toEqual(null);
+    });
+
+    it('It should generate a response body if no body is send', () => {
+        const response = buildResponse(
+            {
+                statusCode: 418,
+            },
+            {
+                info: {
+                    version: '1.2.3',
+                },
+            }
+        );
+        expect(response.headers).toEqual({
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, max-age=0',
+        });
+        expect(response.statusCode).toEqual(418);
+        expect(response.body?.status).toEqual(true);
+        expect(response.body?.version).toEqual('1.2.3');
+        expect(response.body?.message).toEqual('ok');
     });
 });
