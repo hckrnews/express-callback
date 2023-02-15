@@ -24,6 +24,7 @@ const res = {
             json: (value2) => {
                 this.values.send = value2;
             },
+            end: () => true
         };
     },
     json(value) {
@@ -32,6 +33,7 @@ const res = {
     send(value) {
         this.values.send = value;
     },
+    end: () => true,
     setHeader(key, value) {
         this.values.headers[key] = value;
     },
@@ -81,6 +83,38 @@ describe('Test the express callback', () => {
         });
         expect(currentRes.values.status).toEqual(200);
         expect(currentRes.values.type).toEqual('text/xml');
+    });
+
+    it('Http status 201 shouldnt return anything', async () => {
+        const currentRes = { ...res, values: { ...res.values } };
+
+        const controller = () => ({
+            headers: {
+                'Content-Type': 'text/xml',
+                'Cache-Control': 'no-store, max-age=0',
+                example: 'ok',
+            },
+            statusCode: 201,
+        });
+
+        const expressCallback = makeExpressCallback({
+            controller,
+            specification,
+            logger,
+            meta,
+        });
+        const context = {};
+        const req = {};
+        await expressCallback(context, req, currentRes);
+
+        expect(currentRes.values.set).toEqual({
+            'Content-Type': 'text/xml',
+            'Cache-Control': 'no-store, max-age=0',
+            example: 'ok',
+        });
+        expect(currentRes.values.status).toEqual(201);
+        expect(currentRes.values.type).toEqual('text/xml');
+        expect(currentRes.values.send).toEqual(null);
     });
 
     it('It should work with attachments', async () => {

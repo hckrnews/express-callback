@@ -8,6 +8,11 @@ const TestCases = [
         expectedResult: true,
     },
     {
+        description: 'The statusCode 201 should be valid',
+        statusCode: 201,
+        expectedResult: true,
+    },
+    {
         description: 'The statusCode 401 should be valid',
         statusCode: 401,
         expectedResult: true,

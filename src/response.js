@@ -27,6 +27,7 @@ export default function buildResponse(
     }
 
     if (
+        statusCode !== 201 &&
         body &&
         body?.constructor !== Object &&
         body?.constructor !== Array &&
