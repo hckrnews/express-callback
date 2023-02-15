@@ -31,6 +31,7 @@
     "parserOptions": {
         "sourceType": "module",
         "parser": "@babel/eslint-parser",
+        "ecmaVersion": 2023,
         "babelOptions": {
             "configFile": "./babel.config.cjs"
         }
