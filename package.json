@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "4.1.4",
+    "version": "4.1.5",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -51,8 +51,8 @@
         "eslint": "^8.3.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-html": "^7.0.0",
-        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-html": "^8.0.0",
+        "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-prettier": "^5.0.0",
         "esm": "^3.2.25",
@@ -65,6 +65,6 @@
         "node": ">= 16"
     },
     "dependencies": {
-        "mime": "^3.0.0"
+        "mime": "^4.0.0"
     }
 }
