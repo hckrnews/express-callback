@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/express-callback",
-    "version": "4.1.5",
+    "version": "4.1.6",
     "description": "Express callback",
     "files": [
         "src/error-status.js",
@@ -57,7 +57,7 @@
         "eslint-plugin-prettier": "^5.0.0",
         "esm": "^3.2.25",
         "jest": "^29.3.1",
-        "jscpd": "^3.4.2",
+        "jscpd": "^4.0.0",
         "prettier": "^3.0.0"
     },
     "type": "module",
