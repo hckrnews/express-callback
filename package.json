@@ -48,7 +48,7 @@
         "@hckrnews/eslint-config": "^3.0.0",
         "@jest/globals": "^30.0.0",
         "babel-jest": "^30.0.0",
-        "eslint": "^8.3.0",
+        "eslint": "^9.0.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-html": "^8.0.0",
